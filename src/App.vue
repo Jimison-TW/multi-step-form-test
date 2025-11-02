@@ -1,11 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SideBar from './component/SideBar.vue';
+import PersonalInfo from './component/PersonalInfo.vue';
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="popup-container">
+    <SideBar />
+    <PersonalInfo />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.popup-container {
+  display: flex;
+  flex-direction: row;
+}
+</style>
