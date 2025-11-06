@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import SideBar from './component/SideBar.vue';
 import PersonalInfo from './component/PersonalInfo.vue';
+import SelectPlan from './component/SelectPlan.vue';
 </script>
 
 <template>
   <div class="popup-container">
     <SideBar />
-    <PersonalInfo />
+    <!-- <PersonalInfo /> -->
+    <SelectPlan />
   </div>
 </template>
 

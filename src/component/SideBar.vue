@@ -2,7 +2,7 @@
     <div class="sidebar-container">
         <div class="image-bg">
             <div class="tip-wrapper">
-                <StepTip v-for="(step, index) in steps" :key="index" :step="step" class="overlay-item" />
+                <StepTip v-for="(step, index) in steps" :key="index" :step="step" />
             </div>
         </div>
 
