@@ -50,6 +50,7 @@ const PlanOptions = [
     justify-content: flex-start;
     margin-left: 50px;
     margin-top: 50px;
+    width: 430px;
 }
 
 .title {
@@ -62,7 +63,6 @@ const PlanOptions = [
     justify-content: space-between; // 或 center
     align-items: flex-start;
     margin-top: 30px;
-    width: 430px;
 }
 
 .switch-wrapper {
