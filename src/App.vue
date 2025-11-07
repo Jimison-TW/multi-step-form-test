@@ -2,7 +2,8 @@
 import SideBar from './component/SideBar.vue';
 import PersonalInfo from './component/PersonalInfo.vue';
 import SelectPlan from './component/SelectPlan.vue';
-import AddOnes from './component/AddOnes.vue';
+import AddOnes from './component/AddOns.vue';
+import FinishingUp from './component/FinishingUp.vue';
 </script>
 
 <template>
@@ -10,7 +11,8 @@ import AddOnes from './component/AddOnes.vue';
     <SideBar />
     <!-- <PersonalInfo /> -->
     <!-- <SelectPlan /> -->
-    <AddOnes />
+    <!-- <AddOns /> -->
+    <FinishingUp />
   </div>
 </template>
 

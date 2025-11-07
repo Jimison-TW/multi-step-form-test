@@ -1,5 +1,5 @@
 <template>
-    <div class="plan-container">
+    <div class="add-ons-container">
         <h1 class="title">Pick add-ons</h1>
         <div>Add-ons help enhance your gaming experience.</div>
         <div class="check-wrapper">
@@ -28,7 +28,7 @@ const AddOnsOptions = [
 </script>
 
 <style scoped lang="scss">
-.plan-container {
+.add-ons-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
