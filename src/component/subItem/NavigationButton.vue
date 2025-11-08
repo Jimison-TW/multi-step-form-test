@@ -1,11 +1,16 @@
 <template>
     <div class="button-container">
-        <button class="back">Go Back</button>
-        <button class="next">Next Step</button>
+        <button class="back" @click="$emit('prev')">Go Back</button>
+        <button class="next" @click="$emit('next')">Next Step</button>
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const emit = defineEmits<{
+    (e: 'next'): void;
+    (e: 'prev'): void;
+}>();
+</script>
 
 <style scoped lang="scss">
 .button-container {

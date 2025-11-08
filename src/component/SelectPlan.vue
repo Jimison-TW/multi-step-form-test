@@ -1,9 +1,9 @@
 <template>
     <div class="plan-container">
-        <div class="plan-wrapper">
+        <div class="button-container">
             <PlanButton v-for="(plan, index) in PlanOptions" :key="index" :plan="plan" />
         </div>
-        <div class="switch-wrapper">
+        <div class="switch-container">
             <el-switch v-model="value" active-text="Monthly" inactive-text="Yearly" />
         </div>
     </div>
@@ -50,15 +50,16 @@ const PlanOptions = [
     font-size: 30px;
 }
 
-.plan-wrapper {
+.button-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between; // 或 center
     align-items: flex-start;
     margin-top: 30px;
+    width: 100%;
 }
 
-.switch-wrapper {
+.switch-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,15 +68,5 @@ const PlanOptions = [
     background-color: $blue-100;
     border-radius: 10px;
     margin-top: 25px;
-}
-
-
-.navigation-wrapper {
-    width: 100%;
-    margin-top: auto;
-    margin-bottom: 30px;
-    // width: 100%;
-    // display: flex;
-    // justify-content: flex-end;
 }
 </style>

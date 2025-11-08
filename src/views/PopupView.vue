@@ -9,7 +9,7 @@
             <AddOns v-show="currentStep === 3" />
             <FinishingUp v-show="currentStep === 4" />
             <div class="navigation-wrapper">
-                <NavigationButton />
+                <NavigationButton @next="nextStep" @prev="prevStep" />
             </div>
         </div>
     </div>
