@@ -1,16 +1,11 @@
 <template>
     <div class="info-container">
-        <h1 class="info-title">Personal info</h1>
-        <div>Please provide your name, email address, and phone number.</div>
         <h2 class="title">Name</h2>
         <input type="text" placeholder="e.g. Stephen King" />
         <h2 class="title">Email Address</h2>
         <input type="text" placeholder="e.g. stephenking@lorem.com" />
         <h2 class="title">Phone Number</h2>
         <input type="text" placeholder="e.g. +1 234 567 890" />
-        <div class="button-wrapper">
-            <button>Next Step</button>
-        </div>
     </div>
 </template>
 
@@ -20,8 +15,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-left: 50px;
-    margin-top: 50px;
+    width: 100%;
 }
 
 .info-title {

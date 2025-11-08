@@ -1,19 +1,13 @@
 <template>
     <div class="add-ons-container">
-        <h1 class="title">Pick add-ons</h1>
-        <div>Add-ons help enhance your gaming experience.</div>
         <div class="check-wrapper">
             <AddOnsCheck v-for="(option, index) in AddOnsOptions" :key="index" :option="option"
                 :period-type="PERIOD_TYPE" />
-        </div>
-        <div class="navigation-wrapper">
-            <NavigationButton />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import NavigationButton from './subItem/NavigationButton.vue';
 import AddOnsCheck from './subItem/AddOnsCheck.vue';
 import { PeriodType } from '@/const/config';
 
@@ -33,9 +27,7 @@ const AddOnsOptions = [
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-left: 50px;
-    margin-top: 50px;
-    width: 430px;
+    width: 100%;
 }
 
 .title {

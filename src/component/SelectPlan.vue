@@ -1,15 +1,10 @@
 <template>
     <div class="plan-container">
-        <h1 class="title">Select your plan</h1>
-        <div>You have the option of monthly or yearly billing.</div>
         <div class="plan-wrapper">
             <PlanButton v-for="(plan, index) in PlanOptions" :key="index" :plan="plan" />
         </div>
         <div class="switch-wrapper">
             <el-switch v-model="value" active-text="Monthly" inactive-text="Yearly" />
-        </div>
-        <div class="navigation-wrapper">
-            <NavigationButton />
         </div>
     </div>
 </template>
@@ -48,9 +43,7 @@ const PlanOptions = [
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-left: 50px;
-    margin-top: 50px;
-    width: 430px;
+    width: 100%;
 }
 
 .title {
