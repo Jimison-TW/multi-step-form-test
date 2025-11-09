@@ -2,8 +2,7 @@
     <div class="popup-container">
         <SideBar :current-step="currentStep" />
         <div class="content-container">
-            <TitleArea
-                :title-area="{ title: 'Personal info', description: 'Please provide your name, email address, and phone number.' }" />
+            <TitleArea :current-step="currentStep" />
             <PersonalInfo v-show="currentStep === 1" />
             <SelectPlan v-show="currentStep === 2" />
             <AddOns v-show="currentStep === 3" />
