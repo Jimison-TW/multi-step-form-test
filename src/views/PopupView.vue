@@ -3,7 +3,7 @@
         <SideBar :current-step="currentStep" />
         <div class="content-container">
             <TitleArea :current-step="currentStep" />
-            <PersonalInfo v-show="currentStep === 1" />
+            <PersonalInfo v-model="personalInfo" v-show="currentStep === 1" ref="infoRef" />
             <SelectPlan v-show="currentStep === 2" />
             <AddOns v-show="currentStep === 3" />
             <FinishingUp v-show="currentStep === 4" />
@@ -24,9 +24,20 @@ import FinishingUp from '../component/FinishingUp.vue';
 import NavigationButton from '@/component/subItem/NavigationButton.vue';
 import { ref } from 'vue';
 
-const currentStep = ref(4);
+const currentStep = ref(1);
+const personalInfo = ref({
+    name: '',
+    email: '',
+    phone: ''
+})
+const infoRef = ref()
 
 const nextStep = () => {
+    const isValid = infoRef.value.validateAll()
+    if (!isValid) {
+        console.log('驗證未通過')
+        return
+    }
     if (currentStep.value < 4) currentStep.value++;
 };
 const prevStep = () => {
