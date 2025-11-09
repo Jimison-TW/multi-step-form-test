@@ -1,6 +1,6 @@
 <template>
     <div class="popup-container">
-        <SideBar />
+        <SideBar :current-step="currentStep" />
         <div class="content-container">
             <TitleArea
                 :title-area="{ title: 'Personal info', description: 'Please provide your name, email address, and phone number.' }" />

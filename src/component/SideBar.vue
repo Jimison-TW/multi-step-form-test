@@ -2,7 +2,8 @@
     <div class="sidebar-container">
         <div class="image-bg">
             <div class="tip-wrapper">
-                <StepTip v-for="(step, index) in steps" :key="index" :step="step" />
+                <StepTip v-for="(step, index) in steps" :key="index" :step="step"
+                    :isActive="currentStep === index + 1" />
             </div>
         </div>
 
@@ -11,6 +12,8 @@
 
 <script setup lang="ts">
 import StepTip from './StepTip.vue';
+
+defineProps<{ currentStep: number }>();
 
 // 建立一個步驟資料陣列
 const steps = [

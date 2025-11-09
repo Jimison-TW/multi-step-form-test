@@ -1,6 +1,6 @@
 <template>
     <div class="tip-container">
-        <div class="tip-icon">{{ step.number }}</div>
+        <div class="tip-icon" :class="{ active: isActive }">{{ step.number }}</div>
         <div class="tip-content">
             <div class="tip-title">{{ step.title }}</div>
             <div class="tip-desc">{{ step.desc }}</div>
@@ -10,6 +10,7 @@
 
 <script setup lang="ts">
 defineProps<{
+    isActive: boolean;
     step: {
         number: number;
         title: string;
@@ -43,6 +44,13 @@ defineProps<{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.tip-icon.active {
+    border: $blue-200 2px solid;
+    background-color: $blue-200;
+    color: $blue-950;
+    font-weight: bold;
 }
 
 .tip-title {
