@@ -2,11 +2,13 @@
     <div class="plan-container">
         <div class="button-container">
             <PlanButton v-for="(plan, index) in PlanOptions" :key="index" :plan="plan"
-                :selected="selectedPlan === plan.name" @click="selectedPlan = plan.name" :period-type="periodType" />
+                :selected="props.selectedPlan === plan.name" @click="emit('update:selectedPlan', plan.name)"
+                :period-type="_periodType" />
         </div>
         <div class="switch-container">
-            <el-switch class="plan-switch" v-model="periodType" active-text="Yearly" inactive-text="Monthly"
-                :active-value="PeriodType.YEARLY" :inactive-value="PeriodType.MONTHLY" />
+            <el-switch class="plan-switch" v-model="_periodType" active-text="Yearly" inactive-text="Monthly"
+                :active-value="PeriodType.YEARLY" :inactive-value="PeriodType.MONTHLY"
+                @change="emit('update:periodType', _periodType)" />
         </div>
     </div>
 </template>
@@ -16,10 +18,20 @@ import { PeriodType } from '@/const/config';
 import PlanButton from './subItem/PlanButton.vue';
 import { ref } from 'vue';
 
+const props = defineProps<{
+    periodType: PeriodType,
+    selectedPlan: string
+}>();
+
+const emit = defineEmits<{
+    (e: 'update:periodType', value: PeriodType): void;
+    (e: 'update:selectedPlan', value: string): void;
+}>();
+
 // 控制月付/年付
-const periodType = ref<PeriodType>(PeriodType.MONTHLY);
+const _periodType = ref<PeriodType>(props.periodType);
 // 當前選中的方案名稱
-const selectedPlan = ref('Arcade');
+const _selectedPlan = ref(props.selectedPlan);
 
 const PlanOptions = [
     {
