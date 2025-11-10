@@ -1,19 +1,25 @@
 <template>
     <div class="plan-container">
         <div class="button-container">
-            <PlanButton v-for="(plan, index) in PlanOptions" :key="index" :plan="plan" />
+            <PlanButton v-for="(plan, index) in PlanOptions" :key="index" :plan="plan"
+                :selected="selectedPlan === plan.name" @click="selectedPlan = plan.name" :period-type="periodType" />
         </div>
         <div class="switch-container">
-            <el-switch v-model="value" active-text="Monthly" inactive-text="Yearly" />
+            <el-switch class="plan-switch" v-model="periodType" active-text="Yearly" inactive-text="Monthly"
+                :active-value="PeriodType.YEARLY" :inactive-value="PeriodType.MONTHLY" />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { PeriodType } from '@/const/config';
 import PlanButton from './subItem/PlanButton.vue';
-import NavigationButton from './subItem/NavigationButton.vue';
+import { ref } from 'vue';
 
-let value = false;
+// 控制月付/年付
+const periodType = ref<PeriodType>(PeriodType.MONTHLY);
+// 當前選中的方案名稱
+const selectedPlan = ref('Arcade');
 
 const PlanOptions = [
     {

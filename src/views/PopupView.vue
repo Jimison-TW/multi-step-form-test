@@ -24,7 +24,7 @@ import FinishingUp from '../component/FinishingUp.vue';
 import NavigationButton from '@/component/subItem/NavigationButton.vue';
 import { ref } from 'vue';
 
-const currentStep = ref(1);
+const currentStep = ref(2);
 const personalInfo = ref({
     name: '',
     email: '',
