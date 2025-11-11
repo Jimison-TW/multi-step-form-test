@@ -25,7 +25,7 @@ import FinishingUp from '../component/FinishingUp.vue';
 import NavigationButton from '@/component/subItem/NavigationButton.vue';
 import { ref, computed } from 'vue';
 import { PeriodType } from '@/const/config';
-import type { PlanItem } from '@/const/interface';
+import type { AddOnsItem, PlanItem } from '@/const/interface';
 
 const currentStep = ref(4);
 const personalInfo = ref({
@@ -36,7 +36,7 @@ const personalInfo = ref({
 const infoRef = ref()
 const periodType = ref<PeriodType>(PeriodType.MONTHLY)
 const selectedPlan = ref<PlanItem>({ name: 'Arcade', price: 9 })
-const selectedAddOns = ref([false, false, false]);
+const selectedAddOns = ref<AddOnsItem[]>([]);
 
 const planSummary = computed(() => ({
     periodType: periodType.value,

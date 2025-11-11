@@ -30,14 +30,14 @@
 
 <script setup lang="ts">
 import { PeriodType } from '@/const/config';
-import type { PlanItem } from '@/const/interface';
+import type { AddOnsItem, PlanItem } from '@/const/interface';
 import { computed } from 'vue';
 
 const props = defineProps<{
     summary: {
         periodType: PeriodType,
         selectedPlan: PlanItem,
-        selectedAddOns: Array<boolean>
+        selectedAddOns: Array<AddOnsItem>
     }
 }>()
 

@@ -15,15 +15,12 @@
 
 <script setup lang="ts">
 import { PeriodType } from '@/const/config';
+import type { AddOnsItem } from '@/const/interface';
 import { ref, watch } from 'vue';
 
 const props = defineProps<{
     periodType: PeriodType,
-    option: {
-        title: string,
-        desc: string,
-        price: number
-    }
+    option: AddOnsItem
 }>();
 const emit = defineEmits<{
     (e: 'update:checked', value: boolean): void;

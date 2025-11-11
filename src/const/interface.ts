@@ -4,6 +4,8 @@ export interface PlanItem {
 }
 
 export interface AddOnsItem {
-    name: string,
-    price: number
+    isSelected: boolean;
+    title: string;
+    desc: string;
+    price: number;
 }
