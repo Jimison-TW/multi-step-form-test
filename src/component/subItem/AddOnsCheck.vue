@@ -1,22 +1,23 @@
 <template>
-    <div class="check-container">
+    <div class="check-container" :class="{ 'is-checked': checked }">
         <div class="checkbox-wrapper">
-            <el-checkbox size="large" />
+            <el-checkbox v-model="checked" size="large" @change="checked" />
         </div>
         <div class="content-wrapper">
             <p>{{ option.title }}</p>
             <p>{{ option.desc }}</p>
         </div>
         <div class="price-wrapper">
-            <p>{{ `+$${option.price}/${periodType ? 'mo' : 'yr'}` }}</p>
+            <p>{{ `+$${option.price}/${isMonthly ? 'mo' : 'yr'}` }}</p>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import type { PeriodType } from '@/const/config';
+import { PeriodType } from '@/const/config';
+import { ref, watch } from 'vue';
 
-defineProps<{
+const props = defineProps<{
     periodType: PeriodType,
     option: {
         title: string,
@@ -24,6 +25,22 @@ defineProps<{
         price: number
     }
 }>();
+const emit = defineEmits<{
+    (e: 'update:checked', value: boolean): void;
+}>()
+const checked = ref(false);
+const isMonthly = ref(props.periodType === PeriodType.MONTHLY);
+
+watch(
+    () => props.periodType,
+    (newVal) => {
+        isMonthly.value = newVal === PeriodType.MONTHLY;
+    },
+    { immediate: true }
+);
+watch(checked, (val) => {
+    emit('update:checked', val);
+})
 </script>
 
 <style scoped lang="scss">
@@ -35,6 +52,11 @@ defineProps<{
     border-color: black;
     border: 1px solid;
     height: 80px;
+
+    &.is-checked {
+        background-color: $blue-100;
+        border-color: $blue-300;
+    }
 }
 
 .checkbox-wrapper {

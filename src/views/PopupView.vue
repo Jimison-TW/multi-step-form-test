@@ -6,7 +6,7 @@
             <PersonalInfo v-model="personalInfo" v-show="currentStep === 1" ref="infoRef" />
             <SelectPlan v-model:periodType="periodType" v-model:selectedPlan="selectedPlan"
                 v-show="currentStep === 2" />
-            <AddOns v-show="currentStep === 3" />
+            <AddOns v-model:selectedAddOns="selectedAddOns" v-show="currentStep === 3" :period-type="periodType" />
             <FinishingUp v-show="currentStep === 4" />
             <div class="navigation-wrapper">
                 <NavigationButton :current-step="currentStep" @next="nextStep" @prev="prevStep" />
@@ -23,18 +23,19 @@ import SelectPlan from '../component/SelectPlan.vue';
 import AddOns from '../component/AddOns.vue';
 import FinishingUp from '../component/FinishingUp.vue';
 import NavigationButton from '@/component/subItem/NavigationButton.vue';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { PeriodType } from '@/const/config';
 
-const currentStep = ref(2);
+const currentStep = ref(3);
 const personalInfo = ref({
     name: '',
     email: '',
     phone: ''
 })
 const infoRef = ref()
-const periodType = ref<PeriodType>(PeriodType.MONTHLY)
+const periodType = ref<PeriodType>(PeriodType.YEARLY)
 const selectedPlan = ref('Arcade')
+const selectedAddOns = ref([false, false, false]);
 
 const nextStep = () => {
     const isValid = infoRef.value.validateAll()

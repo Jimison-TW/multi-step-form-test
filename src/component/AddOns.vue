@@ -1,8 +1,8 @@
 <template>
     <div class="add-ons-container">
         <div class="check-wrapper">
-            <AddOnsCheck v-for="(option, index) in AddOnsOptions" :key="index" :option="option"
-                :period-type="PERIOD_TYPE" />
+            <AddOnsCheck v-model:checked="selectedAddOns[index]" v-for="(option, index) in AddOnsOptions" :key="index"
+                :option="option" :period-type="props.periodType" />
         </div>
     </div>
 </template>
@@ -10,14 +10,25 @@
 <script setup lang="ts">
 import AddOnsCheck from './subItem/AddOnsCheck.vue';
 import { PeriodType } from '@/const/config';
+import { computed, ref, watch } from 'vue';
 
-const PERIOD_TYPE = PeriodType.MONTHLY;
+const props = defineProps<{
+    periodType: PeriodType
+}>()
+const emit = defineEmits<{
+    (e: 'update:selectedAddOns', value: Array<boolean>): void;
+}>()
 
-const AddOnsOptions = [
-    { title: 'Online service', desc: 'Access to mullidlaver dames', price: PERIOD_TYPE === PeriodType.MONTHLY ? 1 : 10 },
-    { title: 'Larger storage', desc: 'Extra 1TB of cloud save', price: PERIOD_TYPE === PeriodType.MONTHLY ? 2 : 20 },
-    { title: 'Customizable profile', desc: 'Custom theme on your profile', price: PERIOD_TYPE === PeriodType.MONTHLY ? 2 : 20 }
-]
+const AddOnsOptions = computed(() => [
+    { title: 'Online service', desc: 'Access to mullidlaver dames', price: props.periodType === PeriodType.MONTHLY ? 1 : 10 },
+    { title: 'Larger storage', desc: 'Extra 1TB of cloud save', price: props.periodType === PeriodType.MONTHLY ? 2 : 20 },
+    { title: 'Customizable profile', desc: 'Custom theme on your profile', price: props.periodType === PeriodType.MONTHLY ? 2 : 20 }
+])
+const selectedAddOns = ref([false, false, false]);
+
+watch(selectedAddOns, (val) => {
+    emit('update:selectedAddOns', val)
+}, { deep: true });
 
 </script>
 
