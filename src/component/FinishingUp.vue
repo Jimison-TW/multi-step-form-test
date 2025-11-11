@@ -13,7 +13,9 @@
                             </div>
                             <p>{{ `$${summary.selectedPlan.price}/${priceUnit}` }}</p>
                         </div>
-                        <div v-for="(addOns, index) in addOnsSelection" :key="index" class="add-ons-area">
+                        <div v-if="summary.selectedAddOns.length === 0" class="add-ons-area">no add-ons</div>
+                        <div v-if="summary.selectedAddOns.length !== 0"
+                            v-for="(addOns, index) in summary.selectedAddOns" :key="index" class="add-ons-area">
                             <p>{{ addOns.title }}</p>
                             <p>+${{ addOns.price }}/mo</p>
                         </div>
@@ -21,7 +23,7 @@
                 </div>
                 <div class="total-area">
                     <p>Total (per month)</p>
-                    <p>$12/mo</p>
+                    <p>{{ `$${summary.totalPrice}/${priceUnit}` }}</p>
                 </div>
             </div>
         </div>
@@ -38,17 +40,11 @@ const props = defineProps<{
         periodType: PeriodType,
         selectedPlan: PlanItem,
         selectedAddOns: Array<AddOnsItem>
+        totalPrice: number
     }
 }>()
 
-const priceUnit = computed(() => props.summary.periodType === PeriodType.MONTHLY ? 'mo' : 'yr'
-)
-
-const addOnsSelection = [
-    { title: 'Online service', price: 1 },
-    { title: 'Larger storage', price: 2 },
-];
-
+const priceUnit = computed(() => props.summary.periodType === PeriodType.MONTHLY ? 'mo' : 'yr')
 </script>
 
 <style scoped lang="scss">
@@ -75,7 +71,7 @@ const addOnsSelection = [
 .blue-bg-container {
     background-color: $blue-100;
     width: 100%;
-    height: 200px;
+    height: auto;
     border-radius: 10px;
     display: flex;
     align-items: center;

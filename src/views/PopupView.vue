@@ -38,11 +38,15 @@ const periodType = ref<PeriodType>(PeriodType.MONTHLY)
 const selectedPlan = ref<PlanItem>({ name: 'Arcade', price: 9 })
 const selectedAddOns = ref<AddOnsItem[]>([]);
 
-const planSummary = computed(() => ({
-    periodType: periodType.value,
-    selectedPlan: selectedPlan.value,
-    selectedAddOns: selectedAddOns.value
-}));
+const planSummary = computed(() => {
+    const totalAddOnsPrice = selectedAddOns.value.reduce((sum, item) => sum + item.price, 0);
+    return {
+        periodType: periodType.value,
+        selectedPlan: selectedPlan.value,
+        selectedAddOns: selectedAddOns.value,
+        totalPrice: selectedPlan.value.price + totalAddOnsPrice
+    };
+});
 
 const nextStep = () => {
     const isValid = infoRef.value.validateAll()
