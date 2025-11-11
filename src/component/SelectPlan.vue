@@ -2,7 +2,7 @@
     <div class="plan-container">
         <div class="button-container">
             <PlanButton v-for="(plan, index) in PlanOptions" :key="index" :plan="plan"
-                :selected="props.selectedPlan === plan.name" @click="emit('update:selectedPlan', plan.name)"
+                :selected="props.selectedPlan.name === plan.name" @click="emit('update:selectedPlan', plan.name)"
                 :period-type="_periodType" />
         </div>
         <div class="switch-container">
@@ -17,10 +17,11 @@
 import { PeriodType } from '@/const/config';
 import PlanButton from './subItem/PlanButton.vue';
 import { ref } from 'vue';
+import type { PlanItem } from '@/const/interface';
 
 const props = defineProps<{
     periodType: PeriodType,
-    selectedPlan: string
+    selectedPlan: PlanItem
 }>();
 
 const emit = defineEmits<{

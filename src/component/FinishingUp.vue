@@ -6,10 +6,12 @@
                     <div class="content-wrapper">
                         <div class="product-area">
                             <div>
-                                <p>{{ `${productName}(${periodType})` }}</p>
+                                <p>{{ `${summary.selectedPlan.name}(${summary.periodType === PeriodType.MONTHLY ?
+                                    'Monthly' :
+                                    'Yearly'})` }}</p>
                                 <a href="#">Change</a>
                             </div>
-                            <p>$9/mo</p>
+                            <p>{{ `$${summary.selectedPlan.price}/${priceUnit}` }}</p>
                         </div>
                         <div v-for="(addOns, index) in addOnsSelection" :key="index" class="add-ons-area">
                             <p>{{ addOns.title }}</p>
@@ -28,9 +30,19 @@
 
 <script setup lang="ts">
 import { PeriodType } from '@/const/config';
+import type { PlanItem } from '@/const/interface';
+import { computed } from 'vue';
 
-let productName = 'Arcade';
-let periodType = 'Monthly';
+const props = defineProps<{
+    summary: {
+        periodType: PeriodType,
+        selectedPlan: PlanItem,
+        selectedAddOns: Array<boolean>
+    }
+}>()
+
+const priceUnit = computed(() => props.summary.periodType === PeriodType.MONTHLY ? 'mo' : 'yr'
+)
 
 const addOnsSelection = [
     { title: 'Online service', price: 1 },
