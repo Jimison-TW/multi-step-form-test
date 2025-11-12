@@ -32,7 +32,7 @@ const emit = defineEmits(['update:modelValue'])
 const form = reactive({ ...props.modelValue })
 const errors = reactive({
     name: '',
-    email: 'This field is required.',
+    email: '',
     phone: ''
 })
 

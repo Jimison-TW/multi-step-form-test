@@ -13,9 +13,9 @@
                             </div>
                             <p>{{ `$${summary.selectedPlan.price}/${priceUnit}` }}</p>
                         </div>
-                        <div v-if="summary.selectedAddOns.length === 0" class="add-ons-area">no add-ons</div>
-                        <div v-if="summary.selectedAddOns.length !== 0"
-                            v-for="(addOns, index) in summary.selectedAddOns" :key="index" class="add-ons-area">
+                        <div v-if="filteredAddOns.length === 0" class="add-ons-area">no add-ons</div>
+                        <div v-if="filteredAddOns.length !== 0" v-for="(addOns, index) in filteredAddOns" :key="index"
+                            class="add-ons-area">
                             <p>{{ addOns.title }}</p>
                             <p>+${{ addOns.price }}/mo</p>
                         </div>
@@ -45,6 +45,9 @@ const props = defineProps<{
 }>()
 
 const priceUnit = computed(() => props.summary.periodType === PeriodType.MONTHLY ? 'mo' : 'yr')
+const filteredAddOns = computed(() =>
+    props.summary.selectedAddOns.filter(item => item.isSelected)
+);
 </script>
 
 <style scoped lang="scss">
@@ -76,6 +79,7 @@ const priceUnit = computed(() => props.summary.periodType === PeriodType.MONTHLY
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px;
 }
 
 .content-wrapper {

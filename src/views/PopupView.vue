@@ -47,7 +47,10 @@ const selectedAddOns = ref<AddOnsItem[]>([]);
 const isConfirmBuy = ref(false)
 
 const planSummary = computed(() => {
-    const totalAddOnsPrice = selectedAddOns.value.reduce((sum, item) => sum + item.price, 0);
+    const totalAddOnsPrice = selectedAddOns.value.reduce((sum, item) => {
+        if (item.isSelected) return sum + item.price
+        else return sum
+    }, 0);
     return {
         periodType: periodType.value,
         selectedPlan: selectedPlan.value,
@@ -76,7 +79,9 @@ const confirmBuy = () => {
     isConfirmBuy.value = true
 }
 const closePopup = () => {
-    emit('close');
+    if (isConfirmBuy.value) {
+        emit('close');
+    }
 };
 </script>
 
@@ -97,9 +102,10 @@ const closePopup = () => {
 .popup-container {
     display: flex;
     flex-direction: row;
-    background-color: $blue-100;
+    background-color: $blue-50;
     padding: 20px;
     border-radius: 10px;
+    border: 2px solid $blue-950;
 }
 
 .content-container {
@@ -124,5 +130,8 @@ const closePopup = () => {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 50px;
+    margin-top: 50px;
+    max-width: 430px;
 }
 </style>

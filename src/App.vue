@@ -8,7 +8,7 @@
 import PopupView from './views/PopupView.vue';
 import { ref } from 'vue';
 
-const showPopup = ref(true)
+const showPopup = ref(false)
 </script>
 
 <style scoped>
