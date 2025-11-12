@@ -31,7 +31,6 @@ const steps = [
     min-width: 274px;
     height: 568px;
     min-height: 568px;
-    margin: 20px;
 }
 
 .image-bg {

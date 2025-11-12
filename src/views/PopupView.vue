@@ -1,19 +1,22 @@
 <template>
-    <div class="popup-container">
-        <SideBar :current-step="currentStep" />
-        <div v-if="!isConfirmBuy" class="content-container">
-            <TitleArea :current-step="currentStep" />
-            <PersonalInfo v-model="personalInfo" v-show="currentStep === 1" ref="infoRef" />
-            <SelectPlan v-model:periodType="periodType" v-model:selectedPlan="selectedPlan"
-                v-show="currentStep === 2" />
-            <AddOns v-model:selectedAddOns="selectedAddOns" v-show="currentStep === 3" :period-type="periodType" />
-            <FinishingUp v-show="currentStep === 4" :summary="planSummary" />
-            <div class="navigation-wrapper">
-                <NavigationButton :current-step="currentStep" @next="nextStep" @prev="prevStep" @submit="confirmBuy" />
+    <div class="popup-overlay" @click="closePopup">
+        <div class="popup-container" @click.stop>
+            <SideBar :current-step="currentStep" />
+            <div v-if="!isConfirmBuy" class="content-container">
+                <TitleArea :current-step="currentStep" />
+                <PersonalInfo v-model="personalInfo" v-show="currentStep === 1" ref="infoRef" />
+                <SelectPlan v-model:periodType="periodType" v-model:selectedPlan="selectedPlan"
+                    v-show="currentStep === 2" />
+                <AddOns v-model:selectedAddOns="selectedAddOns" v-show="currentStep === 3" :period-type="periodType" />
+                <FinishingUp v-show="currentStep === 4" :summary="planSummary" />
+                <div class="navigation-wrapper">
+                    <NavigationButton :current-step="currentStep" @next="nextStep" @prev="prevStep"
+                        @submit="confirmBuy" />
+                </div>
             </div>
-        </div>
-        <div v-if="isConfirmBuy" class="thank-you-wrapper">
-            <ThankYou />
+            <div v-if="isConfirmBuy" class="thank-you-wrapper">
+                <ThankYou />
+            </div>
         </div>
     </div>
 </template>
@@ -55,6 +58,7 @@ const planSummary = computed(() => {
 
 const emit = defineEmits<{
     (e: 'update'): void;
+    (e: 'close'): void;
 }>()
 
 const nextStep = () => {
@@ -71,12 +75,31 @@ const prevStep = () => {
 const confirmBuy = () => {
     isConfirmBuy.value = true
 }
+const closePopup = () => {
+    emit('close');
+};
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+
 .popup-container {
     display: flex;
     flex-direction: row;
+    background-color: $blue-100;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .content-container {
