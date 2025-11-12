@@ -1,35 +1,42 @@
 <template>
     <div class="summary-container">
+        <h1 class="result-title">Receipt</h1>
         <div class="blue-bg-container">
             <div class="content-wrapper">
                 <div class="product-area">
                     <div>
-                        <p>{{ `${productName}(${periodType})` }}</p>
-                        <a href="#">Change</a>
+                        <p>{{ `${summary.selectedPlan.name}(${summary.periodType === PeriodType.MONTHLY ? 'mo' : 'yr'}`
+                        }}
+                        </p>
                     </div>
-                    <p>$9/mo</p>
+                    <p>{{ `$${summary.selectedPlan.price}/${summary.periodType === PeriodType.MONTHLY ? 'mo' : 'yr'}` }}
+                    </p>
                 </div>
-                <div v-for="(addOns, index) in addOnsSelection" :key="index" class="add-ons-area">
+                <div v-for="(addOns, index) in filteredAddOns" :key="index" class="add-ons-area">
                     <p>{{ addOns.title }}</p>
                     <p>+${{ addOns.price }}/mo</p>
                 </div>
             </div>
         </div>
         <div class="total-area">
-            <p>Total (per month)</p>
-            <p>$12/mo</p>
+            <p>{{ `Total (per ${summary.periodType === PeriodType.MONTHLY ? 'month' : 'year'})` }}</p>
+            <p>${{ summary.totalPrice }}/{{ `${summary.periodType === PeriodType.MONTHLY ? 'mo' : 'yr'}` }}</p>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-let productName = 'Arcade';
-let periodType = 'Monthly';
+import { computed } from 'vue';
+import { PeriodType } from '@/const/config';
+import type { PlanSummary } from '@/const/interface';
 
-const addOnsSelection = [
-    { title: 'Online service', price: 1 },
-    { title: 'Larger storage', price: 2 },
-];
+const props = defineProps<{
+    summary: PlanSummary
+}>()
+
+const filteredAddOns = computed(() =>
+    props.summary.selectedAddOns.filter(item => item.isSelected)
+);
 </script>
 
 <style scoped lang="scss">
@@ -38,6 +45,12 @@ const addOnsSelection = [
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 350px;
+}
+
+.result-title {
+    font-size: 30px;
+    margin-bottom: 10px;
 }
 
 .blue-bg-container {

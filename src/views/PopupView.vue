@@ -32,7 +32,7 @@ import NavigationButton from '@/component/subItem/NavigationButton.vue';
 import ThankYou from '@/component/ThankYou.vue';
 import { ref, computed } from 'vue';
 import { PeriodType } from '@/const/config';
-import type { AddOnsItem, PlanItem } from '@/const/interface';
+import type { AddOnsItem, PlanItem, PlanSummary } from '@/const/interface';
 
 const currentStep = ref(1);
 const personalInfo = ref({
@@ -60,8 +60,8 @@ const planSummary = computed(() => {
 });
 
 const emit = defineEmits<{
-    (e: 'update'): void;
     (e: 'close'): void;
+    (e: 'submit', payload: PlanSummary): void;
 }>()
 
 const nextStep = () => {
@@ -77,6 +77,7 @@ const prevStep = () => {
 };
 const confirmBuy = () => {
     isConfirmBuy.value = true
+    emit('submit', planSummary.value)
 }
 const closePopup = () => {
     if (isConfirmBuy.value) {

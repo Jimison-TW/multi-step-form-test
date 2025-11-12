@@ -17,7 +17,7 @@
                         <div v-if="filteredAddOns.length !== 0" v-for="(addOns, index) in filteredAddOns" :key="index"
                             class="add-ons-area">
                             <p>{{ addOns.title }}</p>
-                            <p>+${{ addOns.price }}/mo</p>
+                            <p>+${{ addOns.price }}/{{ priceUnit }}</p>
                         </div>
                     </div>
                 </div>
@@ -32,16 +32,11 @@
 
 <script setup lang="ts">
 import { PeriodType } from '@/const/config';
-import type { AddOnsItem, PlanItem } from '@/const/interface';
+import type { PlanSummary } from '@/const/interface';
 import { computed } from 'vue';
 
 const props = defineProps<{
-    summary: {
-        periodType: PeriodType,
-        selectedPlan: PlanItem,
-        selectedAddOns: Array<AddOnsItem>
-        totalPrice: number
-    }
+    summary: PlanSummary
 }>()
 
 const priceUnit = computed(() => props.summary.periodType === PeriodType.MONTHLY ? 'mo' : 'yr')
