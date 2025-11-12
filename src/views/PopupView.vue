@@ -1,7 +1,7 @@
 <template>
     <div class="popup-container">
         <SideBar :current-step="currentStep" />
-        <div class="content-container">
+        <div v-if="!isConfirmBuy" class="content-container">
             <TitleArea :current-step="currentStep" />
             <PersonalInfo v-model="personalInfo" v-show="currentStep === 1" ref="infoRef" />
             <SelectPlan v-model:periodType="periodType" v-model:selectedPlan="selectedPlan"
@@ -9,8 +9,11 @@
             <AddOns v-model:selectedAddOns="selectedAddOns" v-show="currentStep === 3" :period-type="periodType" />
             <FinishingUp v-show="currentStep === 4" :summary="planSummary" />
             <div class="navigation-wrapper">
-                <NavigationButton :current-step="currentStep" @next="nextStep" @prev="prevStep" />
+                <NavigationButton :current-step="currentStep" @next="nextStep" @prev="prevStep" @submit="confirmBuy" />
             </div>
+        </div>
+        <div v-if="isConfirmBuy" class="thank-you-wrapper">
+            <ThankYou />
         </div>
     </div>
 </template>
@@ -23,11 +26,12 @@ import SelectPlan from '../component/SelectPlan.vue';
 import AddOns from '../component/AddOns.vue';
 import FinishingUp from '../component/FinishingUp.vue';
 import NavigationButton from '@/component/subItem/NavigationButton.vue';
+import ThankYou from '@/component/ThankYou.vue';
 import { ref, computed } from 'vue';
 import { PeriodType } from '@/const/config';
 import type { AddOnsItem, PlanItem } from '@/const/interface';
 
-const currentStep = ref(4);
+const currentStep = ref(1);
 const personalInfo = ref({
     name: '',
     email: '',
@@ -37,6 +41,7 @@ const infoRef = ref()
 const periodType = ref<PeriodType>(PeriodType.MONTHLY)
 const selectedPlan = ref<PlanItem>({ name: 'Arcade', price: 9 })
 const selectedAddOns = ref<AddOnsItem[]>([]);
+const isConfirmBuy = ref(false)
 
 const planSummary = computed(() => {
     const totalAddOnsPrice = selectedAddOns.value.reduce((sum, item) => sum + item.price, 0);
@@ -47,6 +52,10 @@ const planSummary = computed(() => {
         totalPrice: selectedPlan.value.price + totalAddOnsPrice
     };
 });
+
+const emit = defineEmits<{
+    (e: 'update'): void;
+}>()
 
 const nextStep = () => {
     const isValid = infoRef.value.validateAll()
@@ -59,6 +68,9 @@ const nextStep = () => {
 const prevStep = () => {
     if (currentStep.value > 1) currentStep.value--;
 };
+const confirmBuy = () => {
+    isConfirmBuy.value = true
+}
 </script>
 
 <style scoped>
@@ -81,5 +93,13 @@ const prevStep = () => {
     width: 100%;
     margin-top: auto;
     margin-bottom: 30px;
+}
+
+.thank-you-wrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>
