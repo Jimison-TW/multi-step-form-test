@@ -1,42 +1,44 @@
-# multi-step-form-test
+# 🧩 Multi-Step Form Test
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a **demo web application** built with **Vue.js 3** and **Vite**.  
+It was developed as a **practice project** to explore multi-step form handling, component state management, and TypeScript integration in a modern Vue environment.
 
-## Recommended IDE Setup
+The design and assets are provided by **[Frontend Mentor](https://www.frontendmentor.io/)** as part of their *Multi-step form* challenge — special thanks for offering high-quality UI/UX resources for frontend developers to learn and grow.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Recommended Browser Setup
+## 🛠️ Tech Stack
+- **Vue 3** with the Composition API  
+- **TypeScript** for static typing  
+- **Vite** for fast build and hot module replacement  
+- **SCSS** for modular styling  
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+---
 
-## Type Support for `.vue` Imports in TS
+## 🚀 Project Setup
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+### Install dependencies
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
-
+### Start the development server
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+💡 Development Notes
 
-```sh
-npm run build
-```
+- For the best development experience:
+
+- Use VS Code with the official Vue extension (and disable Vetur)
+
+- Enable Vue.js DevTools in your browser
+
+- Turn on Custom Object Formatter in Chrome or Firefox DevTools
+
+🙏 Credits
+
+- Challenge and design by Frontend Mentor
+
+- Developed by Jimison using Vue 3 + Vite + TypeScript
