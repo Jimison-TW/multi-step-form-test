@@ -180,5 +180,14 @@ const closePopup = () => {
         margin: unset;
         padding: 15px;
     }
+
+    .thank-you-wrapper {
+        width: 90%;
+        position: absolute;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 </style>

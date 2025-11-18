@@ -34,4 +34,12 @@
 .content {
     text-align: center;
 }
+
+@media (max-width: 767px) {
+    .thank-you-container {
+        background-color: $white;
+        padding: 30px;
+        border-radius: 15px;
+    }
+}
 </style>
