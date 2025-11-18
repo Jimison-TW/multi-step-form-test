@@ -2,10 +2,12 @@
     <div class="btn-container" role="button" :class="{ active: selected }" @click="toggleActive">
         <div class="content-wrapper">
             <div class="icon" :style="{ backgroundImage: `url(${plan.iconPath})` }"></div>
-            <div class="plan-name">{{ plan.name }}</div>
-            <div class="monthly-price" v-show="periodType === PeriodType.MONTHLY">${{ plan.monthlyPrice }}/mo</div>
-            <div class="yearly-price" v-show="periodType === PeriodType.YEARLY">${{ plan.yearlyPrice }}/yr</div>
-            <div class="yearly-bonus" v-show="periodType === PeriodType.YEARLY">2 months free</div>
+            <div class="text-container">
+                <div class="plan-name">{{ plan.name }}</div>
+                <div class="monthly-price" v-show="periodType === PeriodType.MONTHLY">${{ plan.monthlyPrice }}/mo</div>
+                <div class="yearly-price" v-show="periodType === PeriodType.YEARLY">${{ plan.yearlyPrice }}/yr</div>
+                <div class="yearly-bonus" v-show="periodType === PeriodType.YEARLY">2 months free</div>
+            </div>
         </div>
     </div>
 </template>
@@ -56,7 +58,7 @@ const toggleActive = () => {
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    margin: 15px 0 15px 15px;
+    margin: 15px;
 }
 
 .icon {
@@ -64,7 +66,10 @@ const toggleActive = () => {
     height: 40px;
     background-repeat: no-repeat;
     background-size: contain;
-    margin-bottom: 30px;
+}
+
+.text-container {
+    margin-top: 30px;
 }
 
 .plan-name {
@@ -80,5 +85,33 @@ const toggleActive = () => {
 .yearly-bonus {
     font-size: 12px;
     color: $blue-950;
+}
+
+@media (max-width:767px) {
+    .btn-container {
+        width: 100%;
+    }
+
+    .content-wrapper {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .text-container {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        margin-left: 15px;
+    }
+
+    .plan-name {
+        font-weight: 500;
+        font-size: 18px;
+    }
 }
 </style>

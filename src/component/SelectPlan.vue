@@ -74,10 +74,6 @@ const onSwitchChange = (val: PeriodType) => {
     width: 100%;
 }
 
-.title {
-    font-size: 30px;
-}
-
 .button-container {
     display: flex;
     flex-direction: row;
@@ -96,5 +92,12 @@ const onSwitchChange = (val: PeriodType) => {
     background-color: $blue-100;
     border-radius: 10px;
     margin-top: 25px;
+}
+
+@media (max-width: 767px) {
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 </style>
