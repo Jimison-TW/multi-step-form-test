@@ -1,17 +1,14 @@
 <template>
     <div class="sidebar-container">
-        <div class="image-bg">
-            <div class="tip-wrapper">
-                <StepTip v-for="(step, index) in steps" :key="index" :step="step"
-                    :isActive="currentStep === index + 1" />
-            </div>
+        <img class="bg-img" />
+        <div class="tip-wrapper">
+            <StepTip v-for="(step, index) in steps" :key="index" :step="step" :isActive="currentStep === index + 1" />
         </div>
-
     </div>
 </template>
 
 <script setup lang="ts">
-import StepTip from './StepTip.vue';
+import StepTip from './subItem/StepTip.vue';
 
 defineProps<{ currentStep: number }>();
 
@@ -33,18 +30,12 @@ const steps = [
     min-height: 568px;
 }
 
-.image-bg {
-    background-image: url('@/assets/images/bg-sidebar-desktop.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    border-radius: 10px;
-    pointer-events: none;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    inset: 0;
+.bg-img {
+    content: url('@/assets/images/bg-sidebar-desktop.svg');
     width: 100%;
-    height: 100%;
+    height: auto; // 按比例縮放
+    pointer-events: none; // 避免遮擋點擊
+    z-index: 0;
 }
 
 .tip-wrapper {
@@ -54,5 +45,32 @@ const steps = [
     flex-direction: column;
     gap: 20px;
     margin: 40px 0 0 30px;
+}
+
+@media (max-width:767px) {
+    .sidebar-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: unset;
+    }
+
+    .bg-img {
+        content: url('@/assets/images/bg-sidebar-mobile.svg');
+        display: block;
+    }
+
+    .tip-wrapper {
+        flex-direction: row;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 </style>

@@ -61,4 +61,10 @@ defineProps<{
     display: inline;
     color: $blue-50;
 }
+
+@media (max-width:767px) {
+    .tip-content {
+        display: none;
+    }
+}
 </style>

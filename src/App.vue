@@ -5,7 +5,7 @@
       <SummaryPanel v-if="summary" :summary="summary" />
     </div>
   </div>
-  <PopupView class="popup-wrapper" v-if="showPopup" @close="showPopup = false" @submit="handleSubmit" />
+  <PopupView v-if="showPopup" @close="showPopup = false" @submit="handleSubmit" />
 </template>
 
 <script setup lang="ts">

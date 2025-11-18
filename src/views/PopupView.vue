@@ -87,6 +87,7 @@ const closePopup = () => {
 </script>
 
 <style scoped lang="scss">
+/** popupView背景遮罩 */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -98,7 +99,6 @@ const closePopup = () => {
     justify-content: center;
     z-index: 999;
 }
-
 
 .popup-container {
     display: flex;
@@ -134,5 +134,19 @@ const closePopup = () => {
     margin-left: 50px;
     margin-top: 50px;
     max-width: 430px;
+}
+
+@media (max-width: 767px) {
+    .popup-overlay {
+        display: block;
+    }
+
+    .popup-container {
+        width: 100%;
+        min-height: 100%;
+        flex-direction: column;
+        padding: 0;
+        border: none;
+    }
 }
 </style>
