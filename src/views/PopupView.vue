@@ -2,13 +2,16 @@
     <div class="popup-overlay" @click="closePopup">
         <div class="popup-container" @click.stop>
             <SideBar :current-step="currentStep" />
-            <div v-if="!isConfirmBuy" class="content-container">
-                <TitleArea :current-step="currentStep" />
-                <PersonalInfo v-model="personalInfo" v-show="currentStep === 1" ref="infoRef" />
-                <SelectPlan v-model:periodType="periodType" v-model:selectedPlan="selectedPlan"
-                    v-show="currentStep === 2" />
-                <AddOns v-model:selectedAddOns="selectedAddOns" v-show="currentStep === 3" :period-type="periodType" />
-                <FinishingUp v-show="currentStep === 4" :summary="planSummary" />
+            <div class="page-container">
+                <div v-if="!isConfirmBuy" class="content-container">
+                    <TitleArea :current-step="currentStep" />
+                    <PersonalInfo v-model="personalInfo" v-show="currentStep === 1" ref="infoRef" />
+                    <SelectPlan v-model:periodType="periodType" v-model:selectedPlan="selectedPlan"
+                        v-show="currentStep === 2" />
+                    <AddOns v-model:selectedAddOns="selectedAddOns" v-show="currentStep === 3"
+                        :period-type="periodType" />
+                    <FinishingUp v-show="currentStep === 4" :summary="planSummary" />
+                </div>
                 <div class="navigation-wrapper">
                     <NavigationButton :current-step="currentStep" @next="nextStep" @prev="prevStep"
                         @submit="confirmBuy" />
@@ -109,6 +112,11 @@ const closePopup = () => {
     border: 2px solid $blue-950;
 }
 
+.page-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .content-container {
     display: flex;
     flex-direction: column;
@@ -147,6 +155,30 @@ const closePopup = () => {
         flex-direction: column;
         padding: 0;
         border: none;
+    }
+
+    .content-container {
+        width: 90%;
+        position: absolute;
+        background-color: $white;
+        padding: 30px;
+        border-radius: 15px;
+        margin-top: unset;
+        margin-left: unset;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .navigation-wrapper {
+        width: 100%;
+        position: absolute;
+        background-color: $white;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: unset;
+        padding: 15px;
     }
 }
 </style>

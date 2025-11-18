@@ -31,6 +31,7 @@ const steps = [
 }
 
 .bg-img {
+    position: absolute;
     content: url('@/assets/images/bg-sidebar-desktop.svg');
     width: 100%;
     height: auto; // 按比例縮放
@@ -39,7 +40,7 @@ const steps = [
 }
 
 .tip-wrapper {
-    position: relative;
+    position: absolute;
     z-index: 1;
     display: flex;
     flex-direction: column;
@@ -68,8 +69,9 @@ const steps = [
         right: 0;
         bottom: 0;
         margin: unset;
+        margin-top: 30px;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
     }
 }
