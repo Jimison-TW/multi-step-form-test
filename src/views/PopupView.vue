@@ -165,7 +165,7 @@ const closePopup = () => {
         border-radius: 15px;
         margin-top: unset;
         margin-left: unset;
-        top: 40%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }

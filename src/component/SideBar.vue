@@ -63,16 +63,14 @@ const steps = [
 
     .tip-wrapper {
         flex-direction: row;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
         margin: unset;
-        margin-top: 30px;
         display: flex;
         align-items: flex-start;
         justify-content: center;
+        height: auto;
+        top: 20px;
+        left: 0;
+        right: 0;
     }
 }
 </style>
